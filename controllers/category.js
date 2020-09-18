@@ -15,7 +15,6 @@ module.exports.createOne = async function(req, res) {
             .insert(category)
         return res.send(data)
     } catch (e) {
-        console.log('here');
         res.status(500)
         res.send('internal server error')
     }
