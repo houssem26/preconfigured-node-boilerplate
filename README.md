@@ -1,6 +1,17 @@
 # test-tech-ncq-api
 workflow / category API
 
+tech stack used:
+
+- backend Framework: Express.js
+- database: Postgres
+- ORM: Objection.js
+- Query Builder: knex
+- Migrations: knex
+- validations: Joi, celebrate
+- documentation: swagger
+- testing stack: Jest, supertest
+
 prerequisites
 to get the API up and running you need:
   - have postgres server working on port 5432
