@@ -1,0 +1,195 @@
+---
+swagger: "2.0"
+info:
+  description: "This is an API for NCQ technical test\n[http://swagger.io](http://swagger.io)\
+    \ or on \n[irc.freenode.net, #swagger](http://swagger.io/irc/).\n"
+  version: "1.0.0"
+  title: "workflow"
+  contact:
+    email: "benhsanhoussem@gmail.com"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+host: "virtserver.swaggerhub.com"
+basePath: "/houssem26/workflowapi/1.0.0"
+tags:
+- name: "category"
+  description: "Everything about workflow categories"
+- name: "workflow"
+  description: "Everything about workflows"
+schemes:
+- "https"
+- "http"
+paths:
+  /category:
+    get:
+      tags:
+      - "category"
+      summary: "read All categories"
+      operationId: "readCategories"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        "200":
+          description: "sucess"
+    post:
+      tags:
+      - "category"
+      summary: "Add a new category"
+      operationId: "addCategory"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "category object to be created"
+        required: true
+        schema:
+          $ref: "#/definitions/category"
+      responses:
+        "405":
+          description: "Invalid input"
+        "200":
+          description: "success"
+  /workflow:
+    get:
+      tags:
+      - "workflow"
+      summary: "read all workflows"
+      operationId: "readAllWorkflows"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/workflow"
+    post:
+      tags:
+      - "workflow"
+      summary: "create one workflow"
+      operationId: "createWorkflow"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "workflow object to be created"
+        required: true
+        schema:
+          $ref: "#/definitions/workflow"
+      responses:
+        "405":
+          description: "Invalid input"
+        "200":
+          description: "success"
+  /workflow/filter:
+    get:
+      tags:
+      - "workflow"
+      summary: "filter workflows by Status, category and name"
+      description: "filter Workflows"
+      operationId: "filterWorkflows"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "status"
+        in: "query"
+        description: "status of workflows to return"
+        required: false
+        type: "integer"
+        format: "int64"
+      - name: "name"
+        in: "query"
+        description: "name of workflows to return"
+        required: false
+        type: "integer"
+        format: "int64"
+      - name: "categories"
+        in: "query"
+        description: "ids of categories related to workflows to return"
+        required: false
+        type: "integer"
+        format: "int64"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/workflowFilters"
+        "400":
+          description: "Invalid ID supplied"
+        "404":
+          description: "Pet not found"
+definitions:
+  category:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      name:
+        type: "integer"
+      description:
+        type: "string"
+      logo:
+        type: "string"
+      createdAt:
+        type: "string"
+      updatedAt:
+        type: "string"
+      status:
+        type: "integer"
+        format: "int64"
+      parent_category_id:
+        type: "integer"
+        format: "int64"
+  workflow:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      name:
+        type: "integer"
+      description:
+        type: "string"
+      status:
+        type: "integer"
+        format: "int64"
+      categories:
+        type: "array"
+        items:
+          type: "integer"
+          format: "int64"
+          example: 1
+      variants:
+        type: "array"
+        items:
+          type: "integer"
+          format: "int64"
+          example: 1
+  workflowFilters:
+    type: "object"
+    properties:
+      name:
+        type: "string"
+      status:
+        type: "integer"
+        format: "int64"
+      categories:
+        type: "array"
+        items:
+          type: "integer"
+          format: "int64"
+          example: 1
+externalDocs:
+  description: "Find out more about Swagger"
+  url: "http://swagger.io"
