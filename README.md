@@ -4,6 +4,9 @@ workflow / category API
 prerequisites
 to get the API up and running you need:
   - have postgres server working on port 5432
+  - create database user
+        user: postgres
+        password: root
   - create a database named db for development
   - create a database named test for testing
   - install knex globally : npm install -g knex
