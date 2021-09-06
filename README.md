@@ -1,4 +1,5 @@
-# test-tech-ncq-api
+# Pre configured Rest API with express.js
+# configured: Models, Database migrations, test environment, schema validation, Swagger Documentation
 workflow / category API
 
 tech stack used:
